@@ -67,6 +67,7 @@ const LoginEmailView = () => {
     <AppForm onSubmit={handleFormSubmit}>
       <Card>
         <CardHeader title="Login with Email" />
+        <CardHeader title="Another Heading for test." />
         <CardContent>
           <TextField
             required
