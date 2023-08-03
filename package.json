@@ -52,7 +52,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@types/react-router-dom": "latest",
-    "prettier": "latest",
+    "prettier": "^3.0.1",
     "typescript": "latest"
   },
   "browserslist": {
