@@ -37,6 +37,7 @@ const LoginEmailView = () => {
     validationSchema: VALIDATE_FORM_LOGIN_EMAIL,
     initialValues: { email: '', password: '' } as FormStateValues,
   });
+  window.a=8;
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string>();
   const values = formState.values as FormStateValues; // Typed alias to formState.values as the "Source of Truth"
