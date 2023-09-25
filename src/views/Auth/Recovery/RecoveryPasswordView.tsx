@@ -29,6 +29,7 @@ const RecoveryPasswordView = ({ email = '' }: Props) => {
     validationSchema: VALIDATE_FORM_RECOVERY_PASSWORD,
     initialValues: { email } as FormStateValues,
   });
+  window.a=10
   const [message, setMessage] = useState<string>();
   const values = formState.values as FormStateValues; // Typed alias to formState.values as the "Source of Truth"
 
