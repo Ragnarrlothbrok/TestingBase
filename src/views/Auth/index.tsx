@@ -9,6 +9,7 @@ import RecoveryRoutes from './Recovery';
  * url: /auth/*
  */
 const AuthRoutes = () => {
+  window.a=10;
   return (
     <Routes>
       <Route path="/" element={<LoginRoutes />} />
