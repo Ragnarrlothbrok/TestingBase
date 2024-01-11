@@ -4,6 +4,7 @@ import { Button, Grid, TextField, Card, CardHeader, CardContent, InputAdornment 
 import { useAppStore } from '../../../store';
 import { AppButton, AppLink, AppIconButton, AppAlert, AppForm } from '../../../components';
 import { useAppForm, SHARED_CONTROL_PROPS, eventPreventDefault } from '../../../utils/form';
+import image from "./milad-fakurian-wNsHBf_bTBo-unsplash.jpg";
 
 const VALIDATE_FORM_LOGIN_EMAIL = {
   email: {
@@ -70,6 +71,8 @@ const LoginEmailView = () => {
         <CardHeader title="Login with Email" />
         <CardHeader title="Another Heading for test." />
         <CardContent>
+          
+        <img src={image} alt="Test Image" style={{width: "100%", height: "350px"}}></img>
           <TextField
             required
             label="Email"
@@ -79,7 +82,8 @@ const LoginEmailView = () => {
             helperText={fieldGetError('email') || ' '}
             onChange={onFieldChange}
             {...SHARED_CONTROL_PROPS}
-          />
+          >
+          </TextField>
           <TextField
             required
             type={showPassword ? 'text' : 'password'}
