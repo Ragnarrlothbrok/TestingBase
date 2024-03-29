@@ -79,7 +79,7 @@ const LoginEmailView = () => {
             onChange={onFieldChange}
             {...SHARED_CONTROL_PROPS}
           >
-            </TextField><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjQwMzA0fQ&utm_source=chromeGoalCountdown&utm_medium=referral" />
+            </TextField><img width="300px" height="300px" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjQwMzA0fQ&utm_source=chromeGoalCountdown&utm_medium=referral" />
           
           <TextField
             required
