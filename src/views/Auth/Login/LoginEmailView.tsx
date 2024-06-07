@@ -66,9 +66,7 @@ const LoginEmailView = () => {
   return (
     <AppForm onSubmit={handleFormSubmit}>
       <Card>
-        <CardHeader title="Login with Email" />
-        <CardHeader title="Another Heading for test." />
-        <iframe src="https://tailnext-test.vercel.app/?id=740207" width="600px" height="600px" />
+        <CardHeader title="Welcome, Please login to continue." />
         <CardContent>
           <TextField
             required
