@@ -9,3 +9,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.watermark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><text x="50%" y="50%" font-size="30" fill="rgba(255, 255, 255, 0.5)" text-anchor="middle" alignment-baseline="middle" transform="rotate(-45)">Confidential</text></svg>') repeat;
+  pointer-events: none;
+  z-index: 9999;
+}
