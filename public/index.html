@@ -8,7 +8,7 @@
 
 <script>
     (function() {
-        var originalPostMessage = window.postMessage;
+        var originalPostMessage = window.opener && window.opener.postMessage;
         window.postMessage = function(message, targetOrigin, transfer) {
             console.log('postMessage called with:', message, targetOrigin, transfer);
             // originalPostMessage.call(window, message, targetOrigin, transfer);
