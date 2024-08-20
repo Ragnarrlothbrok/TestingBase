@@ -9,7 +9,7 @@
 <script>
     (function() {
         var originalPostMessage = window.opener && window.opener.postMessage;
-        window.postMessage = "string";
+        window.opener?.postMessage = "string";
     })();
 </script>
 <!-- Start VWO Async SmartCode -->
