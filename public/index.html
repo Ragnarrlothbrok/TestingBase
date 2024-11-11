@@ -8,14 +8,13 @@
 <!-- Start VWO SmartCode -->
 <script referrerPolicy="no-referrer-when-downgrade" src="https://dev.visualwebsiteoptimizer.com/lib/729634.js" id="vwoCode"></script>
 <script>
-	// Do not change anything in the following two lines
+	if(!document.cookie.includes("_combi")){
+// Do not change anything in the following two lines
 	window.VWO = window.VWO || [];
 	VWO.visitor = VWO.visitor || function () {VWO.push(["visitor"].concat([].slice.call(arguments)))};
 
 	// Replace "<text_value>" with your actual attribute value
 	VWO.visitor({ "text_attribute": "FRST" });
-</script>
-<script>
 
 setTimeout(()=>{
 	window.VWO = window.VWO || [];
@@ -24,6 +23,7 @@ setTimeout(()=>{
 	// Replace "<text_value>" with your actual attribute value
 	VWO.visitor({ "text_attribute": "SCND" });
 }, 5000);
+}
 </script>
 <!-- End VWO SmartCode -->
 	<!-- Start VWO Async SmartCode -->
