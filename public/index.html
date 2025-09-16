@@ -23,13 +23,14 @@
 	  <!-- Start VWO SmartCode --> 
 <script>
 	window.VWO = window.VWO || [];
-	// if(window.location.href == 'https://testing-base.vercel.app/'){
+	if(window.location.href == 'https://testing-base.vercel.app/'){
 	window.VWO.push([
 		'setVisitorId',
 		function(){
 			return "aLwaysSetThis"
 		}, {"variationSelection": "hash"}
 	]);
+	}
 	// setTimeout(() => {
 	// window.VWO = window.VWO || [];
 	// if(window.location.href == 'https://testing-base.vercel.app/'){
