@@ -30,12 +30,7 @@
 			return "aLwaysSetThis"
 		}, {"variationSelection": "hash"}
 	]);
-		window.VWO.push([
-		'setSessionId',
-		function(){
-			return Date.now();
-		}
-	]);
+		window.VWO.push(['setVariation', [{e: '60', v: '1'}]]);
 	}
 	// setTimeout(() => {
 	// window.VWO = window.VWO || [];
