@@ -35,13 +35,12 @@
 	// setTimeout(() => {
 	// window.VWO = window.VWO || [];
 	// if(window.location.href == 'https://testing-base.vercel.app/'){
-	// window.VWO.push([
-	// 	'setVisitorId',
-	// 	function(){
-	// 		return "aLwaysSetThis"
-	// 	},
-	// 	{"variationSelection": "hash"}
-	// ]);
+	window.VWO.push(['setSessionId', () => {
+  // Use current time as session base (common pattern)
+		const retVal = Math.floor(Date.now() / 1000)
+		console.log("Set Value is", retVal);
+  return retVal; // Convert milliseconds to seconds
+}]);
 	// }, 5000)
 
 	// window.VWO.push(['setVariation', [{e: '60', v: '1'}]]);
