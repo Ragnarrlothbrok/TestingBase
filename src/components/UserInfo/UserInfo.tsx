@@ -20,7 +20,7 @@ const UserInfo = ({ className, showAvatar = false, user, ...restOfProps }: UserI
   const userPhoneOrEmail = user?.phone || (user?.email as string);
 
   return (
-    <Stack alignItems="center" minHeight="fit-content" marginBottom={2} {...restOfProps}>
+    <Stack sx={{ alignItems: 'center', minHeight: 'fit-content', mb: 2 }} {...restOfProps}>
       {showAvatar ? (
         <AppLink to="/user" underline="none">
           <Avatar

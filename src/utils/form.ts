@@ -46,7 +46,7 @@ export const formHasError = (formState: FormState, fieldName: string): boolean =
  * Returns text of "top most" Error for the Form field by given Name.
  * Returns null if there is no Error.
  */
-export const formGetError = (formState: FormState, fieldName: string): string => {
+export const formGetError = (formState: FormState, fieldName: string): string | null => {
   return formHasError(formState, fieldName) ? (formState.errors as ObjectPropByName)[fieldName]?.[0] : null;
 };
 
@@ -62,7 +62,7 @@ interface UseAppFormReturn {
   formState: FormState;
   setFormState: (formState: FormState) => void;
   onFieldChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  fieldGetError: (fieldName: string) => string;
+  fieldGetError: (fieldName: string) => string | null;
   fieldHasError: (fieldName: string) => boolean;
   isFormValid: () => boolean;
   isFormTouched: () => boolean;
@@ -124,7 +124,7 @@ export function useAppForm({ validationSchema, initialValues = {} }: UseAppFormP
   }, []);
 
   // Returns text of "top most" Error for the Field by given Name or null
-  const fieldGetError = (fieldName: string): string => formGetError(formState, fieldName);
+  const fieldGetError = (fieldName: string): string | null => formGetError(formState, fieldName);
 
   // Verifies does the Field with given Name has the Error
   const fieldHasError = (fieldName: string): boolean => formHasError(formState, fieldName);

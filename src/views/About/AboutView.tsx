@@ -1,4 +1,5 @@
-import DialogsSection from './DialogsSection';
+import { Box, Card, CardActions, CardHeader } from '@mui/material';
+import { AppButton, AppView } from '../../components';
 
 /**
  * Renders "About" view
@@ -8,7 +9,7 @@ import DialogsSection from './DialogsSection';
 const AboutView = () => {
   return (
     <AppView>
-      <Grid item xs={12} md={3}>
+      <Box sx={{ width: '100%', maxWidth: { md: '25%' } }}>
         <Card>
           <CardHeader title="VWO Testing Base" subheader="Version 1" />
           <CardActions>
@@ -17,7 +18,7 @@ const AboutView = () => {
             </AppButton>
           </CardActions>
         </Card>
-      </Grid>
+      </Box>
 
       {/* <Grid item xs={12} md={3}>
         <DialogsSection />

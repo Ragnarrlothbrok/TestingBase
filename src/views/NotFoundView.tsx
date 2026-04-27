@@ -23,7 +23,7 @@ const NotFoundView = () => {
       <AppAlert severity="error" onClose={onClose}>
         Error 404 - Page not found
       </AppAlert>
-      <Stack direction="row" justifyContent="center">
+      <Stack sx={{ flexDirection: 'row', justifyContent: 'center' }}>
         <AppButton onClick={onClose}>Go to Home Page</AppButton>
       </Stack>
     </AppView>

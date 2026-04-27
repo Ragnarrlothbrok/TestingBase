@@ -1,5 +1,5 @@
 import { ChangeEvent, useState, ReactNode, useCallback } from 'react';
-import { Card, CardHeader, Grid, TextField } from '@mui/material';
+import { Card, CardHeader, Stack, TextField } from '@mui/material';
 import { AppButton, AppIconButton } from '../../components';
 import {
   CommonDialog as MessageDialog,
@@ -134,7 +134,7 @@ const DialogsSection = () => {
 
       <Card>
         <CardHeader title="Dialogs" />
-        <Grid container direction="column" alignItems="center">
+        <Stack sx={{ alignItems: 'center' }}>
           <AppButton size="small" label="Simple Message" color="default" onClick={onMessageDialogOpen} />
           <AppButton size="small" label="Confirmation Dialog" color="primary" onClick={onConfirmDialogOpen} />
           <AppButton
@@ -144,7 +144,7 @@ const DialogsSection = () => {
             onClick={onEditEmailDialogOpen}
           />
           <br />
-        </Grid>
+        </Stack>
       </Card>
     </>
   );

@@ -23,7 +23,7 @@ const AppLoading: FunctionComponent<Props> = ({
 }) => {
   const alignItems = type === 'linear' ? undefined : 'center';
   return (
-    <Stack my={2} alignItems={alignItems} {...restOfProps}>
+    <Stack sx={{ my: 2, alignItems }} {...restOfProps}>
       {type === 'linear' ? (
         <LinearProgress color={color} value={value} />
       ) : (
