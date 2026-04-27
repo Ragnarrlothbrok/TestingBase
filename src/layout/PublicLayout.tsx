@@ -1,5 +1,5 @@
 import { FunctionComponent, PropsWithChildren, useCallback, useState } from 'react';
-import { Stack } from '@mui/material/';
+import { Stack } from '@mui/material';
 import { useAppStore } from '../store/AppStore';
 import { ErrorBoundary, AppIconButton } from '../components';
 import { LinkToPage } from '../utils/type';

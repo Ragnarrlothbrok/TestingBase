@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { FunctionComponent } from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import AppLink, { AppLinkProps } from './';
 import { randomColor } from '../../utils';
 
@@ -20,8 +20,8 @@ describe('<AppLink/> component', () => {
   it('renders itself', () => {
     const text = 'sample text';
     const url = 'https://example.com/';
-    render(<ComponentToTest href={url}>{text}</ComponentToTest>);
-    const link = screen.getByText(text);
+    const { getByText } = render(<ComponentToTest href={url}>{text}</ComponentToTest>);
+    const link = getByText(text);
     expect(link).toBeDefined();
     expect(link).toHaveAttribute('href', url);
     expect(link).toHaveTextContent(text);
@@ -30,8 +30,8 @@ describe('<AppLink/> component', () => {
   it('supports external link', () => {
     const text = 'external link';
     const url = 'https://example.com/';
-    render(<ComponentToTest href={url}>{text}</ComponentToTest>);
-    const link = screen.getByText(text);
+    const { getByText } = render(<ComponentToTest href={url}>{text}</ComponentToTest>);
+    const link = getByText(text);
     expect(link).toBeDefined();
     expect(link).toHaveAttribute('href', url);
     expect(link).toHaveTextContent(text);
@@ -45,8 +45,8 @@ describe('<AppLink/> component', () => {
   it('supports internal link', () => {
     const text = 'internal link';
     const url = '/internal-link';
-    render(<ComponentToTest to={url}>{text}</ComponentToTest>);
-    const link = screen.getByText(text);
+    const { getByText } = render(<ComponentToTest to={url}>{text}</ComponentToTest>);
+    const link = getByText(text);
     expect(link).toBeDefined();
     expect(link).toHaveAttribute('href', url);
     expect(link).toHaveTextContent(text);
@@ -58,12 +58,12 @@ describe('<AppLink/> component', () => {
     // External link with openInNewTab={false}
     let text = 'external link in same tab';
     let url = 'https://example.com/';
-    render(
+    const { getByText: getByTextAfterExternal } = render(
       <ComponentToTest href={url} openInNewTab={false}>
         {text}
       </ComponentToTest>
     );
-    let link = screen.getByText(text);
+    let link = getByTextAfterExternal(text);
     expect(link).toBeDefined();
     expect(link).toHaveAttribute('href', url);
     expect(link).toHaveTextContent(text);
@@ -73,12 +73,12 @@ describe('<AppLink/> component', () => {
     // Internal link with openInNewTab={true}
     text = 'internal link in new tab';
     url = '/internal-link-in-new-tab';
-    render(
+    const { getByText: getByTextAfterInternal } = render(
       <ComponentToTest to={url} openInNewTab>
         {text}
       </ComponentToTest>
     );
-    link = screen.getByText(text);
+    link = getByTextAfterInternal(text);
     expect(link).toBeDefined();
     expect(link).toHaveAttribute('href', url);
     expect(link).toHaveTextContent(text);
@@ -93,12 +93,12 @@ describe('<AppLink/> component', () => {
     let text = 'internal link with specific class';
     let url = '/internal-link-with-class';
     let className = 'someClassName';
-    render(
+    const { getByText } = render(
       <ComponentToTest to={url} className={className}>
         {text}
       </ComponentToTest>
     );
-    let link = screen.getByText(text);
+    let link = getByText(text);
     expect(link).toBeDefined();
     expect(link).toHaveClass(className);
   });
@@ -109,12 +109,12 @@ describe('<AppLink/> component', () => {
       let text = `link #${i} with .color property`;
       let url = '/internal-link-with-color';
       let color = randomColor();
-      render(
+      const { getByText } = render(
         <ComponentToTest to={url} color={color}>
           {text}
         </ComponentToTest>
       );
-      let link = screen.getByText(text);
+      let link = getByText(text);
       expect(link).toBeDefined();
       expect(link).toHaveStyle(`color: ${color}`);
     }
@@ -125,12 +125,12 @@ describe('<AppLink/> component', () => {
     ['hover', 'always', 'none'].forEach((underline) => {
       let text = `link with .underline == "${underline}"`;
       let url = '/internal-link-with-underline';
-      render(
+      const { getByText } = render(
         <ComponentToTest to={url} underline={underline as any}>
           {text}
         </ComponentToTest>
       );
-      let link = screen.getByText(text);
+      let link = getByText(text);
       expect(link).toBeDefined();
       underline === 'none'
         ? expect(link).toHaveStyle('text-decoration: none')

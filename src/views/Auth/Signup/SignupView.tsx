@@ -1,7 +1,7 @@
 import { SyntheticEvent, useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Grid,
+  Stack,
   TextField,
   Card,
   CardHeader,
@@ -215,18 +215,20 @@ const SignupView = () => {
             helperText={fieldGetError('password') || ' '}
             onChange={onFieldChange}
             {...SHARED_CONTROL_PROPS}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <AppIconButton
-                    aria-label="toggle password visibility"
-                    icon={showPassword ? 'visibilityon' : 'visibilityoff'}
-                    title={showPassword ? 'Hide Password' : 'Show Password'}
-                    onClick={handleShowPasswordClick}
-                    onMouseDown={eventPreventDefault}
-                  />
-                </InputAdornment>
-              ),
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <AppIconButton
+                      aria-label="toggle password visibility"
+                      icon={showPassword ? 'visibilityon' : 'visibilityoff'}
+                      title={showPassword ? 'Hide Password' : 'Show Password'}
+                      onClick={handleShowPasswordClick}
+                      onMouseDown={eventPreventDefault}
+                    />
+                  </InputAdornment>
+                ),
+              },
             }}
           />
           {!showPassword && (
@@ -253,11 +255,11 @@ const SignupView = () => {
             </AppAlert>
           ) : null}
 
-          <Grid container justifyContent="center" alignItems="center">
+          <Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
             <AppButton type="submit" disabled={!(isFormValid() && agree)}>
               Confirm and Sign Up
             </AppButton>
-          </Grid>
+          </Stack>
         </CardContent>
       </Card>
     </AppForm>

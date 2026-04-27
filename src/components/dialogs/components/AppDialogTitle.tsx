@@ -14,7 +14,7 @@ const AppDialogTitle: FunctionComponent<Props> = ({ children, onClose, ...props 
   const theme = useTheme();
   return (
     <DialogTitle {...props}>
-      <Stack direction="row" maxWidth={`calc(100% - ${theme.spacing(4)})`}>
+      <Stack sx={{ flexDirection: 'row', maxWidth: `calc(100% - ${theme.spacing(4)})` }}>
         <Typography
           sx={{
             textOverflow: 'ellipsis',

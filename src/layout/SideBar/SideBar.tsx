@@ -44,11 +44,13 @@ const SideBar: FunctionComponent<Props> = ({ anchor, open, variant, items, onClo
       anchor={anchor}
       open={open}
       variant={variant}
-      PaperProps={{
-        sx: {
-          width: SIDE_BAR_WIDTH,
-          marginTop: onMobile ? 0 : variant === 'temporary' ? 0 : TOP_BAR_DESKTOP_HEIGHT,
-          height: onMobile ? '100%' : variant === 'temporary' ? '100%' : `calc(100% - ${TOP_BAR_DESKTOP_HEIGHT})`,
+      slotProps={{
+        paper: {
+          sx: {
+            width: SIDE_BAR_WIDTH,
+            marginTop: onMobile ? 0 : variant === 'temporary' ? 0 : TOP_BAR_DESKTOP_HEIGHT,
+            height: onMobile ? '100%' : variant === 'temporary' ? '100%' : `calc(100% - ${TOP_BAR_DESKTOP_HEIGHT})`,
+          },
         },
       }}
       onClose={onClose}

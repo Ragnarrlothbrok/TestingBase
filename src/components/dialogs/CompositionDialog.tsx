@@ -3,7 +3,7 @@ import { Box, Dialog, DialogActions, DialogContent, DialogProps } from '@mui/mat
 import { AppDialogTitle } from './components';
 import { useDialogMinWidth } from './utils';
 
-interface Props extends DialogProps {
+interface Props extends Omit<DialogProps, 'content'> {
   title?: string;
   content?: ReactNode;
   actions?: ReactNode;
@@ -29,9 +29,11 @@ const CompositionDialog: FunctionComponent<Props> = ({
     <Dialog
       aria-labelledby="form-dialog-title"
       open={open}
-      PaperProps={{
-        sx: {
-          minWidth: paperMinWidth,
+      slotProps={{
+        paper: {
+          sx: {
+            minWidth: paperMinWidth,
+          },
         },
       }}
       onClose={onClose}
@@ -43,7 +45,7 @@ const CompositionDialog: FunctionComponent<Props> = ({
       <DialogContent sx={{ py: 1 }}>
         {/* Box is temporary fix for https://github.com/mui-org/material-ui/issues/27851 */}
         {/* TODO: verify do we still need this fix */}
-        <Box pt={1}>
+        <Box sx={{ pt: 1 }}>
           {content}
           {children}
         </Box>

@@ -48,9 +48,11 @@ const CommonDialog: FunctionComponent<Props> = ({
     <Dialog
       aria-labelledby="form-dialog-title"
       open={open}
-      PaperProps={{
-        sx: {
-          minWidth: paperMinWidth,
+      slotProps={{
+        paper: {
+          sx: {
+            minWidth: paperMinWidth,
+          },
         },
       }}
       onClose={onClose}

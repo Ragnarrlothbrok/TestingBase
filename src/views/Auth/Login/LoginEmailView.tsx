@@ -1,6 +1,6 @@
 import { SyntheticEvent, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Grid, TextField, Card, CardHeader, CardContent, InputAdornment } from '@mui/material';
+import { Button, Stack, TextField, Card, CardHeader, CardContent, InputAdornment } from '@mui/material';
 import { useAppStore } from '../../../store';
 import { AppButton, AppLink, AppIconButton, AppAlert, AppForm } from '../../../components';
 import { useAppForm, SHARED_CONTROL_PROPS, eventPreventDefault } from '../../../utils/form';
@@ -36,7 +36,6 @@ const LoginEmailView = () => {
     validationSchema: VALIDATE_FORM_LOGIN_EMAIL,
     initialValues: { email: '', password: '' } as FormStateValues,
   });
-  window.a=8;
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string>();
   const values = formState.values as FormStateValues; // Typed alias to formState.values as the "Source of Truth"
@@ -77,8 +76,8 @@ const LoginEmailView = () => {
             helperText={fieldGetError('email') || ' '}
             onChange={onFieldChange}
             {...SHARED_CONTROL_PROPS}
-          >
-            </TextField><TextField
+          />
+          <TextField
             required
             type={showPassword ? 'text' : 'password'}
             label="Password"
@@ -88,18 +87,20 @@ const LoginEmailView = () => {
             helperText={fieldGetError('password') || ' '}
             onChange={onFieldChange}
             {...SHARED_CONTROL_PROPS}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <AppIconButton
-                    aria-label="toggle password visibility"
-                    icon={showPassword ? 'visibilityon' : 'visibilityoff'}
-                    title={showPassword ? 'Hide Password' : 'Show Password'}
-                    onClick={handleShowPasswordClick}
-                    onMouseDown={eventPreventDefault}
-                  />
-                </InputAdornment>
-              ),
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <AppIconButton
+                      aria-label="toggle password visibility"
+                      icon={showPassword ? 'visibilityon' : 'visibilityoff'}
+                      title={showPassword ? 'Hide Password' : 'Show Password'}
+                      onClick={handleShowPasswordClick}
+                      onMouseDown={eventPreventDefault}
+                    />
+                  </InputAdornment>
+                ),
+              },
             }}
           />
           {error ? (
@@ -107,14 +108,14 @@ const LoginEmailView = () => {
               {error}
             </AppAlert>
           ) : null}
-          <Grid container justifyContent="center" alignItems="center">
+          <Stack sx={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
             <AppButton type="submit" disabled={!isFormValid()}>
               Login with Email
             </AppButton>
             <Button variant="text" color="inherit" component={AppLink} to="/auth/recovery/password">
               Forgot Password
             </Button>
-          </Grid>
+          </Stack>
         </CardContent>
       </Card>
     </AppForm>

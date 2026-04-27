@@ -1,5 +1,5 @@
 import { SyntheticEvent, useCallback, useState } from 'react';
-import { Grid, TextField, Card, CardHeader, CardContent } from '@mui/material';
+import { Stack, TextField, Card, CardHeader, CardContent } from '@mui/material';
 import { AppButton, AppAlert, AppForm } from '../../../components';
 import { useAppForm, SHARED_CONTROL_PROPS } from '../../../utils/form';
 
@@ -29,7 +29,6 @@ const RecoveryPasswordView = ({ email = '' }: Props) => {
     validationSchema: VALIDATE_FORM_RECOVERY_PASSWORD,
     initialValues: { email } as FormStateValues,
   });
-  window.a=10
   const [message, setMessage] = useState<string>();
   const values = formState.values as FormStateValues; // Typed alias to formState.values as the "Source of Truth"
 
@@ -66,11 +65,11 @@ const RecoveryPasswordView = ({ email = '' }: Props) => {
             </AppAlert>
           ) : null}
 
-          <Grid container justifyContent="center" alignItems="center">
+          <Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
             <AppButton type="submit" disabled={!isFormValid()}>
               Send Password Recovery Email
             </AppButton>
-          </Grid>
+          </Stack>
         </CardContent>
       </Card>
     </AppForm>
