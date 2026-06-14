@@ -35,6 +35,29 @@
   }]);
 })();
 		</script>
+	  <script>
+  window.VWO = window.VWO || [];
+  window.VWO.push(['onCampaignsLoaded', function(data) {
+    console.log("=== [onCampaignsLoaded] ===");
+    console.log("URL:", window.location.href);
+    console.log("Full Data:", data);
+  }]);
+		  window.VWO.push(['onVWOCampaignsLoaded', function(data) {
+    console.log("=== [onVWOCampaignsLoaded] ===");
+    console.log("URL:", window.location.href);
+    console.log("Full Data:", data);
+  }]);
+		  window.VWO.push(['onVWOLoaded', function(data) {
+    console.log("=== [onVWOLoaded] ===");
+    console.log("URL:", window.location.href);
+    console.log("Full Data:", data);
+  }]);
+		  window.VWO.push(['onLibLoaded', function(data) {
+    console.log("=== [onLibLoaded] ===");
+    console.log("URL:", window.location.href);
+    console.log("Full Data:", data);
+  }]);
+</script>
 
   </head>
   <body>
