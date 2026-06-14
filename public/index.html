@@ -57,8 +57,105 @@
     console.log("URL:", window.location.href);
     console.log("Full Data:", data);
   }]);
-</script>
+		  (function() {
+  window.Wingify = window.Wingify || [];
+  window.willRedirectionOccurByWingify = true;
+  window.Wingify.push(['onEventReceive', 'nR', function() {
+    // nR fires only when no redirection is going to be done.
+    // If a redirection will occur, this callback is suppressed.
+    window.willRedirectionOccurByWingify = false;
+  }]);
+})();
 
+</script>
+<script>
+(function(nonWingifyScriptsToExecute, WINGIFY_HARD_TIMEOUT) {
+  window.Wingify = window.Wingify || [];
+  window.willRedirectionOccurByWingify = true;
+  window.Wingify.push(['onEventReceive', 'nR', function() {
+    // nR fires only when no redirection is going to be done.
+    // If a redirection will occur, this callback is suppressed.
+    window.willRedirectionOccurByWingify = false;
+  }]);
+  var hardLimitTimedout = false;
+
+  function tryNonWingifyTracking(nonWingifyScriptsToExecute) {
+    if ((window._wingify_code && (window._wingify_code.finished() || window._wingify_code.libExecuted)) || hardLimitTimedout) {
+      if (!window.willRedirectionOccurByWingify) {
+        clearTimeout(hardLimitTimer);
+        for (var i = 0; i < nonWingifyScriptsToExecute.length; i++) {
+          try {
+            nonWingifyScriptsToExecute[i]();
+          } catch (e) {}
+        }
+        return;
+      }
+    }
+    setTimeout(function() {
+      tryNonWingifyTracking(nonWingifyScriptsToExecute)
+    }, 500)
+  }
+
+  var hardLimitTimer = setTimeout(function() {
+    hardLimitTimedout = true;
+  }, WINGIFY_HARD_TIMEOUT);
+  tryNonWingifyTracking(nonWingifyScriptsToExecute);
+})([function() {
+
+<!-- Google Tag Manager -->
+
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','<Your-GTM-TAG-ID>'); // Add your GTM TAG ID
+<!-- End Google Tag Manager -->
+
+}], 5000 /*MAXIMUM TIME IN SECONDS IN WHICH GA CODE WILL EXECUTE ANYWAY*/ );
+</script>
+	  <script async src="https://www.googletagmanager.com/gtag/js?id=<GA4-Measurement-ID>"></script> // In the case of GA4, this script should be loaded, replacing G-ABCD1EFG2H with your GA4 measurement ID.
+
+<script>
+(function(nonWingifyScriptsToExecute, WINGIFY_HARD_TIMEOUT) {
+  window.Wingify = window.Wingify || [];
+  window.willRedirectionOccurByWingify = true;
+  window.Wingify.push(['onEventReceive', 'nR', function() {
+    // nR fires only when no redirection is going to be done.
+    // If a redirection will occur, this callback is suppressed.
+    window.willRedirectionOccurByWingify = false;
+  }]);
+  var hardLimitTimedout = false;
+
+  function tryNonWingifyTracking(nonWingifyScriptsToExecute) {
+    if ((window._wingify_code && (window._wingify_code.finished() || window._wingify_code.libExecuted)) || hardLimitTimedout) {
+      if (!window.willRedirectionOccurByWingify) {
+        clearTimeout(hardLimitTimer);
+        for (var i = 0; i < nonWingifyScriptsToExecute.length; i++) {
+          try {
+            nonWingifyScriptsToExecute[i]();
+          } catch (e) {}
+        }
+        return;
+      }
+    }
+    setTimeout(function() {
+      tryNonWingifyTracking(nonWingifyScriptsToExecute)
+    }, 500)
+  }
+
+  var hardLimitTimer = setTimeout(function() {
+    hardLimitTimedout = true;
+  }, WINGIFY_HARD_TIMEOUT);
+  tryNonWingifyTracking(nonWingifyScriptsToExecute);
+})([function() {
+  // GA4 code started
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '<GA4-Measurement-ID>'); //Replace given measurement ID with your GA4 Measurement ID 
+  // GA4 code End/Closed 
+}], 5000 /*MAXIMUM TIME IN SECONDS IN WHICH GA CODE WILL EXECUTE ANYWAY*/ );
+</script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
