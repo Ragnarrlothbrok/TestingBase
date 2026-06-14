@@ -26,7 +26,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-        
+        <script>
+			(function() {
+    window.Wingify = window.Wingify || [];
+  window.Wingify.push(['onEventReceive', 'nR', function() {
+    console.log("Doing something on nR", window.location.href)
+  }]);
+})();
+		</script>
 
   </head>
   <body>
