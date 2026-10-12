@@ -18,7 +18,33 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/16x16.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 	  <!-- <script type="text/javascript" src="https://staging-try.abtasty.com/f972719eab0745e39e3f4b1cdfa6258f.js"></script> -->
-	  <script type="text/javascript" src="https://staging-try.abtasty.com/004da0fd6b1447e8834df0d58dd03d50.js"></script>
+	  <script>
+  (function () {
+    var TAG_HASH_BY_ACCOUNT = {
+      '54454': '004da0fd6b1447e8834df0d58dd03d50', // SOFT_MIGRATION_TAG_COMBINED
+      '54455': '17071a58639f4fefa1910ecc5c1277f1', // SOFT_MIGRATION_TAG_ASYNC_BODY_HIDDEN
+      '54456': '9e64a42c782b4f65bb71dc5f90902cd3', // SOFT_MIGRATION_TAG_ASYNC_BODY_VISIBLE
+      '54457': 'a93b7af3ea294089a85b926d04b9619b'  // FULL_MIGRATION
+    };
+    var PARAM = 'abtId';
+    var DEFAULT_ID = '54454';
+
+    var id = new URLSearchParams(location.search).get(PARAM);
+    // Keep the choice for in-app (SPA) navigations that drop the query string
+    try {
+      if (id) sessionStorage.setItem(PARAM, id);
+      else id = sessionStorage.getItem(PARAM);
+    } catch (e) {}
+    id = id || DEFAULT_ID;
+
+    // Also accepts a raw 32-char tag hash for accounts not in the map
+    var hash = TAG_HASH_BY_ACCOUNT[id] || (/^[0-9a-f]{32}$/.test(id) ? id : null);
+    if (!hash) { console.warn('[abt] unknown abtId:', id); return; }
+
+    // document.write keeps the tag parser-blocking, exactly like the static <script src>
+    document.write('<script type="text/javascript" src="https://staging-try.abtasty.com/' + hash + '.js"><\/script>');
+  })();
+</script>
     <!-- <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script> -->
     
