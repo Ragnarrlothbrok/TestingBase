@@ -17,7 +17,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/16x16.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-	  <!-- <script type="text/javascript" src="https://staging-try.abtasty.com/f972719eab0745e39e3f4b1cdfa6258f.js"></script> -->
 	  <script>
   (function () {
     var TAG_HASH_BY_ACCOUNT = {
@@ -25,23 +24,11 @@
       '54455': '17071a58639f4fefa1910ecc5c1277f1', // SOFT_MIGRATION_TAG_ASYNC_BODY_HIDDEN
       '54456': '9e64a42c782b4f65bb71dc5f90902cd3', // SOFT_MIGRATION_TAG_ASYNC_BODY_VISIBLE
       '54457': 'a93b7af3ea294089a85b926d04b9619b', // FULL_MIGRATION
-      '54458': 'ac9d6837f137455fa9b5f5744e099b8a'  // SEPARATED_INSTALL
+      '54458': 'ac9d6837f137455fa9b5f5744e099b8a'  // SOFT_MIGRATION_TAG_SEPARATED_INSTALL
     };
-    var DEFAULT_ID = '54454';
     var params = new URLSearchParams(location.search);
-
-    // URL param wins; otherwise reuse this tab's last choice (SPA navigations drop the query)
-    function sticky(name) {
-      var value = params.get(name);
-      try {
-        if (value !== null) sessionStorage.setItem(name, value);
-        else value = sessionStorage.getItem(name);
-      } catch (e) {}
-      return value;
-    }
-
-    var id = sticky('abtId') || DEFAULT_ID;
-    var prefix = sticky('test') === '1' ? 'test_' : '';
+    var id = params.get('abtId') || '54454';
+    var prefix = params.get('test') === '1' ? 'test_' : '';
 
     // Also accepts a raw 32-char tag hash for accounts not in the map
     var hash = TAG_HASH_BY_ACCOUNT[id] || (/^[0-9a-f]{32}$/.test(id) ? id : null);
