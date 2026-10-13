@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 	  <script>
   (function () {
+    var TAG_ORIGIN = 'https://staging-try.abtasty.com';
     var TAG_HASH_BY_ACCOUNT = {
       '54454': '004da0fd6b1447e8834df0d58dd03d50', // SOFT_MIGRATION_TAG_COMBINED
       '54455': '17071a58639f4fefa1910ecc5c1277f1', // SOFT_MIGRATION_TAG_ASYNC_BODY_HIDDEN
@@ -34,10 +35,19 @@
     var hash = TAG_HASH_BY_ACCOUNT[id] || (/^[0-9a-f]{32}$/.test(id) ? id : null);
     if (!hash) { console.warn('[abt] unknown abtId:', id); return; }
 
+    // Cache-buster: every load bypasses CloudFront and gets the latest build. Add &cb=0 to the page URL to turn it off.
+    var bust = params.get('cb') === '0' ? '' : '?cb=' + Date.now();
+
+    // The tag finds its own folder by stripping "/<file>.js" from the end of its src, and a query string breaks that.
+    // id + data-abtasty-path hand it the folder explicitly, the same way the tag's own initiator does.
     // document.write keeps the tag parser-blocking, exactly like a static <script src>
-    document.write('<script type="text/javascript" src="https://staging-try.abtasty.com/' + prefix + hash + '.js"><\/script>');
+    document.write(
+      '<script id="abtasty-initiator" data-abtasty-path="' + TAG_ORIGIN + '" type="text/javascript" src="' +
+      TAG_ORIGIN + '/' + prefix + hash + '.js' + bust + '"><\/script>'
+    );
   })();
 </script>
+
     <!-- <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script> -->
     
