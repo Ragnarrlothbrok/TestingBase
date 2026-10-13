@@ -24,25 +24,31 @@
       '54454': '004da0fd6b1447e8834df0d58dd03d50', // SOFT_MIGRATION_TAG_COMBINED
       '54455': '17071a58639f4fefa1910ecc5c1277f1', // SOFT_MIGRATION_TAG_ASYNC_BODY_HIDDEN
       '54456': '9e64a42c782b4f65bb71dc5f90902cd3', // SOFT_MIGRATION_TAG_ASYNC_BODY_VISIBLE
-      '54457': 'a93b7af3ea294089a85b926d04b9619b'  // FULL_MIGRATION
+      '54457': 'a93b7af3ea294089a85b926d04b9619b', // FULL_MIGRATION
+      '54458': 'ac9d6837f137455fa9b5f5744e099b8a'  // SEPARATED_INSTALL
     };
-    var PARAM = 'abtId';
     var DEFAULT_ID = '54454';
+    var params = new URLSearchParams(location.search);
 
-    var id = new URLSearchParams(location.search).get(PARAM);
-    // Keep the choice for in-app (SPA) navigations that drop the query string
-    try {
-      if (id) sessionStorage.setItem(PARAM, id);
-      else id = sessionStorage.getItem(PARAM);
-    } catch (e) {}
-    id = id || DEFAULT_ID;
+    // URL param wins; otherwise reuse this tab's last choice (SPA navigations drop the query)
+    function sticky(name) {
+      var value = params.get(name);
+      try {
+        if (value !== null) sessionStorage.setItem(name, value);
+        else value = sessionStorage.getItem(name);
+      } catch (e) {}
+      return value;
+    }
+
+    var id = sticky('abtId') || DEFAULT_ID;
+    var prefix = sticky('test') === '1' ? 'test_' : '';
 
     // Also accepts a raw 32-char tag hash for accounts not in the map
     var hash = TAG_HASH_BY_ACCOUNT[id] || (/^[0-9a-f]{32}$/.test(id) ? id : null);
     if (!hash) { console.warn('[abt] unknown abtId:', id); return; }
 
-    // document.write keeps the tag parser-blocking, exactly like the static <script src>
-    document.write('<script type="text/javascript" src="https://staging-try.abtasty.com/' + hash + '.js"><\/script>');
+    // document.write keeps the tag parser-blocking, exactly like a static <script src>
+    document.write('<script type="text/javascript" src="https://staging-try.abtasty.com/' + prefix + hash + '.js"><\/script>');
   })();
 </script>
     <!-- <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
